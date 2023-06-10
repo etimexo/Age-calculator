@@ -1,0 +1,39 @@
+@font-face {
+    font-family: Poppins;
+    src: url(/assets/fonts/OFL.txt);
+}
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+body {
+    background-color: hsl(0, 0%, 86%);
+}
+.main {
+    width: 90%;
+    height: 70vh;
+    margin-top: 70px;
+    background-color: hsl(0, 0%, 100%);
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 80px;
+}
+.main .row {
+    margin-top: 50px;
+}
+h2 {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: hsl(0, 1%, 44%);
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+input {
+    width: 15vw;
+    height: 6vh;
+    border: 1px solid black;
+    padding: 0 2px;
+}
