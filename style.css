@@ -21,19 +21,65 @@ body {
     border-bottom-left-radius: 20px;
     border-bottom-right-radius: 80px;
 }
+main .main {
+    text-align: center;
+}
+main .main .row .head {
+    text-align: left;
+    padding-left: 7px;
+}
 .main .row {
     margin-top: 50px;
 }
 h2 {
-    font-size: 1.1rem;
+    font-size: 1.05rem;
     font-weight: 700;
     color: hsl(0, 1%, 44%);
-    letter-spacing: 1px;
+    letter-spacing: 5px;
     text-transform: uppercase;
 }
 input {
-    width: 15vw;
+    width: 24vw;
     height: 6vh;
     border: 1px solid black;
     padding: 0 2px;
+    padding: 30px 10px;
+    border-radius: 5px;
+    border: 0.7px solid hsl(0, 1%, 44%);
+    font-size: 28px;
+    font-weight: 700;
+}
+.image-line {
+    position: relative;
+}
+.span1, .span2 {
+    background-color: hsl(0, 1%, 44%);
+    width: 30vw;
+    position: absolute;
+    height: 1px;
+    top: 50%;
+    display: block;
+    content: "";
+}
+.span1 {
+    left: 12px;
+}
+.span2 {
+    right: 12px;
+}
+#but {
+    width: 16vw;
+    padding: 8px;
+    border: none;
+    border-radius: 50%;
+    background-color: hsl(259, 100%, 65%);
+}
+.content {
+    display: inline-block;
+}
+.hyear {
+    display: inline;
+}
+@media (min-width: 376px) {
+
 }
