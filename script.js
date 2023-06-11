@@ -11,10 +11,29 @@ button.addEventListener("click", function () {
     let year = inputEl3.value
     let now = new Date()
     let inputDate = new Date(year, month - 1, day)
-    yearsDifference = now.getFullYear() - inputDate.getFullYear()
-    console.log(yearsDifference)
-    monthsDifference = now.getMonth() - inputDate.getMonth()
-    console.log(monthsDifference)
-    daysDifference = now.getDate()
-    console.log(daysDifference)
+    function years() {
+        let yearsDifference = now.getFullYear() - inputDate.getFullYear()
+        spanYear.innerHTML = yearsDifference + " "
+    }
+    function months() {
+        let yearsDifference = now.getFullYear() - inputDate.getFullYear()
+        let monthsDifference = now.getMonth() - inputDate.getMonth()
+        if (yearsDifference === 0 && monthsDifference < 0) {
+            monthsDifference = 12 - Math.abs(monthsDifference)
+        }
+        if (yearsDifference > 0 && monthsDifference < 0) {
+            monthsDifference = 12 - Math.abs(monthsDifference)
+        }
+        if (yearsDifference > 0 && monthsDifference < 0) {
+            monthsDifference = 12 * (yearsDifference - 1) + (12 - Math.abs(monthsDifference))
+        }
+        spanMonth.innerHTML = monthsDifference + " "
+    }
+    function days() {
+        let daysDifference = now.getDate()
+        spanDay.innerHTML =daysDifference + " "
+    }
+    years()
+    months()
+    days()
 })
