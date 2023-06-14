@@ -56,12 +56,14 @@ function incrementCounters() {
       tDay.classList.add("wrong-day")
       pDay.innerHTML = "must be a valid date"
       pDay.classList.add("pday")
+      disableButton();
     } else {
       // Valid day input
       inputEl1.classList.remove("invalid")
       tDay.classList.remove("wrong-day")
       pDay.innerHTML = ""
       pDay.classList.remove("pday")
+      enableButtonIfValidInput();
     }
   })
   
@@ -73,18 +75,43 @@ function incrementCounters() {
     if (isNaN(month) || month < 1 || month > 12) {
       inputEl2.classList.add("invalid")
       tMonth.classList.add("wrong-month")
-      pMonth.innerHTML = "must be a valid month"
+      pMonth.innerHTML = "Must be a valid month"
       pMonth.classList.add("pmonth")
-    } else {
+      disableButton();
+    }
+    else {
       // Valid month input
       inputEl2.classList.remove("invalid")
       tMonth.classList.remove("wrong-month")
       pMonth.innerHTML = ""
       pMonth.classList.remove("pmonth")
-
+      enableButtonIfValidInput();
+      let day = parseInt(inputEl1.value);
+    if (!isNaN(day) && (day < 1 || day > getDaysInMonth(month))) {
+      inputEl1.classList.add("invalid")
+      tDay.classList.add("wrong-day")
+      pDay.innerHTML = "Must be a valid date"
+      pDay.classList.add("pday")
+      disableButton();
+    } else {
+      // Valid day input
+      inputEl1.classList.remove("invalid")
+      tDay.classList.remove("wrong-day")  
+      pDay.innerHTML = ""
+      pDay.classList.remove("pday")
+      enableButtonIfValidInput();
+    }
     }
   })
-  
+  function getDaysInMonth(month) {
+    const thirtyOneDaysMonths = [1, 3, 5, 7, 8, 10, 12]
+    return thirtyOneDaysMonths.includes(month) ? 31 : 30;
+  }
+  function enableButtonIfValidInput() {
+    if (!inputEl1.classList.contains("invalid") && !inputEl2.classList.contains("invalid") && !inputEl3.classList.contains("invalid")) {
+      enableButton();
+    }
+  }
   inputEl3.addEventListener("input", function() {
     let year = parseInt(inputEl3.value)
     let currentYear = new Date().getFullYear()
@@ -96,7 +123,7 @@ function incrementCounters() {
     else if (year > currentYear) {
       inputEl3.classList.add("invalid")
       tYear.classList.add("wrong-year")
-      pYear.innerHTML = "must be in the past"
+      pYear.innerHTML = "Must be in the past"
       pYear.classList.add("pyear")
     } else {
       // Valid year input
@@ -113,7 +140,15 @@ function incrementCounters() {
     let year = inputEl3.value
 
     if (day.trim() === "" || month.trim() === "" || year.trim() === "") {
-      alert("Please input a valid date")
+      pYear.innerHTML = "This field is required"
+      pDay.innerHTML = "This field is required"
+      pMonth.innerHTML = "This field is required"
+      inputEl3.classList.add("invalid")
+      tYear.classList.add("wrong-year")
+      inputEl2.classList.add("invalid")
+      tMonth.classList.add("wrong-month")
+      inputEl1.classList.add("invalid")
+      tDay.classList.add("wrong-day")
       return null
     }
 

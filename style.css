@@ -59,6 +59,9 @@ input {
     font-size: 25px;
     font-weight: 800;
 }
+input:hover {
+    cursor: pointer;
+}
 .image-line {
     position: relative;
 }
@@ -79,14 +82,15 @@ input {
 }
 #but {
     width: 16vw;
+    /* height: 50px; */
     padding: 8px;
     border: none;
     border-radius: 50%;
     background-color: hsl(259, 100%, 65%);
 }
-#but .img{
-    width: 8vw;
-    height: 7vh;
+#but:hover, #but:focus {
+    background: #000;
+    cursor: pointer;
 }
 #content {
     text-align: left;
@@ -114,36 +118,41 @@ input {
 }
 .pday, .pmonth, .pyear {
     color: red;
+    font-size: 15px;
+    margin-top: 10px;
+    
 }
 @media (min-width: 376px) {
     main {
-        width: 50vw;
+        width: 60vw;
         margin: auto;
     }
-    main .col {
-        width: 5vw;
+    main .main .row {
+        width: 80%;
+        margin: auto 70vw auto 0;
     }
     input {
-        width: 10vw;
+        width: 10rem;
         display: block;
+        margin-left: 2px;
     }
     .image-line {
         position: relative;
     }
     #but {
+        margin-top: 2pxS;
         width: 6rem;
-        height: 10vh;
+        height: 13vh;
         position: relative;
-        right: -10rem;
-        padding: 0;
-        /* text-align: center; */
-        /* display: flex;
-        align-items: center;
-        justify-content: center; */
+        right: -17rem;
+    }
+    #but:hover, #but:focus {
+        background: #000;
+        cursor: pointer;
     }
     .span1{
         background-color: hsl(0, 1%, 44%);
-        width: 30vw;
+        width: 43vw;
         position: absolute;
         height: 1px;
         top: 50%;
