@@ -4,10 +4,14 @@ let inputEl1 = document.querySelector(".input-el1")
 let tDay = document.querySelector(".tday")
 let tMonth = document.querySelector(".tmonth")
 let tYear = document.querySelector(".tyear")
+let pDay = document.querySelector(".pday")
+let pMonth = document.querySelector(".pmonth")
+let pYear = document.querySelector(".pyear")
 let button = document.getElementById("but")
 let spanYear = document.getElementById("span-year")
 let spanMonth = document.getElementById("span-month")
 let spanDay = document.getElementById("span-day")
+let now = new Date()
 let yearsDifference
 let monthsDifference
 let daysDifference
@@ -48,15 +52,16 @@ function incrementCounters() {
   
     // Check if the day value is valid
     if (isNaN(day) || day < 1 || day > 31) {
-      // Invalid day input
-      // function invalidDay() {
-      //   inputEl1.classList.add("invalid")
-      //   tDay.classList.add("wrong-day")
-      // } invalidDay()
       inputEl1.classList.add("invalid")
+      tDay.classList.add("wrong-day")
+      pDay.innerHTML = "must be a valid date"
+      pDay.classList.add("pday")
     } else {
       // Valid day input
       inputEl1.classList.remove("invalid")
+      tDay.classList.remove("wrong-day")
+      pDay.innerHTML = ""
+      pDay.classList.remove("pday")
     }
   })
   
@@ -66,32 +71,39 @@ function incrementCounters() {
   
     // Check if the month value is valid
     if (isNaN(month) || month < 1 || month > 12) {
-      // Invalid month input
-      // function invalidMonth() {
-      //   inputEl2.classList.add("invalid")
-      //   tMonth.classList.add("wrong-month")
-      // } invalidMonth()
       inputEl2.classList.add("invalid")
+      tMonth.classList.add("wrong-month")
+      pMonth.innerHTML = "must be a valid month"
+      pMonth.classList.add("pmonth")
     } else {
       // Valid month input
       inputEl2.classList.remove("invalid")
+      tMonth.classList.remove("wrong-month")
+      pMonth.innerHTML = ""
+      pMonth.classList.remove("pmonth")
+
     }
   })
   
   inputEl3.addEventListener("input", function() {
     let year = parseInt(inputEl3.value)
-  
+    let currentYear = new Date().getFullYear()
     // Check if the year value is valid
     if (isNaN(year)) {
-      // Invalid year input
-      // function invalidMonth() {
-      //   inputEl3.classList.add("invalid")
-      //   tYear.classList.add("wrong-year")
-      // } invalidMonth()
       inputEl3.classList.add("invalid")
+      tYear.classList.add("wrong-year")
+    } 
+    else if (year > currentYear) {
+      inputEl3.classList.add("invalid")
+      tYear.classList.add("wrong-year")
+      pYear.innerHTML = "must be in the past"
+      pYear.classList.add("pyear")
     } else {
       // Valid year input
       inputEl3.classList.remove("invalid")
+      tYear.classList.remove("wrong-year")
+      pYear.innerHTML = ""
+      pYear.classList.remove("pyear")
     }
   })
   
@@ -105,7 +117,7 @@ function incrementCounters() {
       return null
     }
 
-    let now = new Date()
+
     let inputDate = new Date(year, month - 1, day)
     yearsDifference = 0
     monthsDifference = 0

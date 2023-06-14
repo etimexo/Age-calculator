@@ -100,9 +100,6 @@ input {
     color: hsl(259, 100%, 65%);
 
 }
-@media (min-width: 376px) {
-
-}
 .invalid {
     outline: 1px solid red;
 }
@@ -114,4 +111,46 @@ input {
 }
 .wrong-year {
     color: red;
+}
+.pday, .pmonth, .pyear {
+    color: red;
+}
+@media (min-width: 376px) {
+    main {
+        width: 50vw;
+        margin: auto;
+    }
+    main .col {
+        width: 5vw;
+    }
+    input {
+        width: 10vw;
+        display: block;
+    }
+    .image-line {
+        position: relative;
+    }
+    #but {
+        width: 6rem;
+        height: 10vh;
+        position: relative;
+        right: -10rem;
+        padding: 0;
+        /* text-align: center; */
+        /* display: flex;
+        align-items: center;
+        justify-content: center; */
+    }
+    .span1{
+        background-color: hsl(0, 1%, 44%);
+        width: 30vw;
+        position: absolute;
+        height: 1px;
+        top: 50%;
+        display: block;
+        content: "";
+    }
+    .span2 {
+        display: none;
+    }
 }
