@@ -1,6 +1,9 @@
 let inputEl2 = document.querySelector(".input-el2")
 let inputEl3 = document.querySelector(".input-el3")
 let inputEl1 = document.querySelector(".input-el1")
+let tDay = document.querySelector(".tday")
+let tMonth = document.querySelector(".tmonth")
+let tYear = document.querySelector(".tyear")
 let button = document.getElementById("but")
 let spanYear = document.getElementById("span-year")
 let spanMonth = document.getElementById("span-month")
@@ -13,9 +16,9 @@ let resultMonths
 let resultDays
 let intervalId
 function defaultValues() {
-    spanDay.innerHTML = 0 
-    spanMonth.innerHTML = 0
-    spanYear.innerHTML = 0
+    spanDay.innerHTML = "-- " 
+    spanMonth.innerHTML = "-- "
+    spanYear.innerHTML = "-- "
 }
 defaultValues()
 function incrementCounters() {
@@ -24,29 +27,84 @@ function incrementCounters() {
       yearsDifference++
       spanYear.innerHTML = yearsDifference + " "
     }
-  
     // Update months
     if (monthsDifference < resultMonths) {
       monthsDifference++
       spanMonth.innerHTML = monthsDifference + " "
     }
-  
     // Update days
     if (daysDifference < resultDays) {
       daysDifference++
       spanDay.innerHTML = daysDifference + " "
     }
-  
     // Stop the interval when all counters reach their respective results
     if (yearsDifference === resultYears && monthsDifference === resultMonths && daysDifference === resultDays) {
       clearInterval(intervalId)
     }
   }
+
+  inputEl1.addEventListener("input", function() {
+    let day = parseInt(inputEl1.value)
+  
+    // Check if the day value is valid
+    if (isNaN(day) || day < 1 || day > 31) {
+      // Invalid day input
+      // function invalidDay() {
+      //   inputEl1.classList.add("invalid")
+      //   tDay.classList.add("wrong-day")
+      // } invalidDay()
+      inputEl1.classList.add("invalid")
+    } else {
+      // Valid day input
+      inputEl1.classList.remove("invalid")
+    }
+  })
+  
+  // Repeat the same process for inputEl2 and inputEl3
+  inputEl2.addEventListener("input", function() {
+    let month = parseInt(inputEl2.value)
+  
+    // Check if the month value is valid
+    if (isNaN(month) || month < 1 || month > 12) {
+      // Invalid month input
+      // function invalidMonth() {
+      //   inputEl2.classList.add("invalid")
+      //   tMonth.classList.add("wrong-month")
+      // } invalidMonth()
+      inputEl2.classList.add("invalid")
+    } else {
+      // Valid month input
+      inputEl2.classList.remove("invalid")
+    }
+  })
+  
+  inputEl3.addEventListener("input", function() {
+    let year = parseInt(inputEl3.value)
+  
+    // Check if the year value is valid
+    if (isNaN(year)) {
+      // Invalid year input
+      // function invalidMonth() {
+      //   inputEl3.classList.add("invalid")
+      //   tYear.classList.add("wrong-year")
+      // } invalidMonth()
+      inputEl3.classList.add("invalid")
+    } else {
+      // Valid year input
+      inputEl3.classList.remove("invalid")
+    }
+  })
   
   button.addEventListener("click", function () {
     let day = inputEl1.value
     let month = inputEl2.value
     let year = inputEl3.value
+
+    if (day.trim() === "" || month.trim() === "" || year.trim() === "") {
+      alert("Please input a valid date")
+      return null
+    }
+
     let now = new Date()
     let inputDate = new Date(year, month - 1, day)
     yearsDifference = 0
@@ -55,16 +113,18 @@ function incrementCounters() {
     resultYears = now.getFullYear() - inputDate.getFullYear()
     resultMonths = now.getMonth() - inputDate.getMonth()
     resultDays = now.getDate()
-  
+
     if (now.getMonth() < inputDate.getMonth() || (now.getMonth() === inputDate.getMonth() && now.getDate() < inputDate.getDate())) {
       resultYears--
       resultMonths += 12
-    }
-  
-    if (resultYears === 0 && resultMonths > 0 && now.getDate() < inputDate.getDate()) {
-      resultMonths--
-    }
-    clearInterval(intervalId)
-    intervalId = setInterval(incrementCounters, 50)
-
-  })
+      }
+      if (now.getDate() < inputDate.getDate()) {
+        resultMonths--
+      }
+      
+      if (resultYears === 0 && resultMonths > 0 && now.getDate() < inputDate.getDate()) {
+        resultMonths--
+      }
+        clearInterval(intervalId)
+        intervalId = setInterval(incrementCounters, 25)
+    })

@@ -24,12 +24,21 @@ body {
 main .main {
     text-align: center;
 }
-main .main .row .head {
+.row:first-child{
+    margin: auto;
+}
+main .main .row {
     text-align: left;
     padding-left: 7px;
 }
 .main .row {
     margin-top: 50px;
+}
+.row {
+    display: flex;
+}
+.col {
+    width: 40vw;
 }
 h2 {
     font-size: 1.05rem;
@@ -37,6 +46,7 @@ h2 {
     color: hsl(0, 1%, 44%);
     letter-spacing: 5px;
     text-transform: uppercase;
+    display: inline;
 }
 input {
     width: 24vw;
@@ -92,4 +102,16 @@ input {
 }
 @media (min-width: 376px) {
 
+}
+.invalid {
+    outline: 1px solid red;
+}
+.wrong-day {
+    color: red;
+}
+.wrong-month {
+    color: red;
+}
+.wrong-year {
+    color: red;
 }
