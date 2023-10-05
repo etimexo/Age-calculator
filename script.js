@@ -152,26 +152,29 @@ function incrementCounters() {
       return null
     }
 
-
     let inputDate = new Date(year, month - 1, day)
+    let currentDate = new Date()
     yearsDifference = 0
     monthsDifference = 0
     daysDifference = 0
-    resultYears = now.getFullYear() - inputDate.getFullYear()
-    resultMonths = now.getMonth() - inputDate.getMonth()
-    resultDays = now.getDate()
-
-    if (now.getMonth() < inputDate.getMonth() || (now.getMonth() === inputDate.getMonth() && now.getDate() < inputDate.getDate())) {
+    if (isNaN(day) || isNaN(month) || isNaN(year)) {
+      return;
+    }
+    resultYears = currentDate.getFullYear() - inputDate.getFullYear()
+    resultMonths = currentDate.getMonth() - inputDate.getMonth()
+    resultDays = currentDate.getDate()
+    if (currentDate < inputDate) {
       resultYears--
       resultMonths += 12
-      }
-      if (now.getDate() < inputDate.getDate()) {
-        resultMonths--
-      }
+    }
+  
+    if (currentDate.getDate() < inputDate.getDate()) {
+      resultMonths--
       
-      if (resultYears === 0 && resultMonths > 0 && now.getDate() < inputDate.getDate()) {
-        resultMonths--
-      }
+    }
+    if (currentDate.getDate() < inputDate.getDate()) {
+      resultMonths--
+    }
         clearInterval(intervalId)
         intervalId = setInterval(incrementCounters, 25)
     })
